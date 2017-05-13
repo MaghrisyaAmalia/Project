@@ -44,6 +44,23 @@ public class MainActivity extends AppCompatActivity
 
         changePage(R.id.nav_home);
         navigationView.setCheckedItem(R.id.nav_home);
+    }
+
+    private void changePage(int id) {
+
+        Fragment fragment = null;
+
+        if (id == R.id.nav_home) {
+            fragment = new HomeFragment();
+            setTitle("News");
+        } else if (id == R.id.nav_about) {
+
+        }
+
+        getSupportFragmentManager().beginTransaction().replace(R.id.container, fragment).commitNow();
+
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        drawer.closeDrawer(GravityCompat.START);
 
     }
 
@@ -56,7 +73,6 @@ public class MainActivity extends AppCompatActivity
             super.onBackPressed();
         }
     }
-
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -84,33 +100,10 @@ public class MainActivity extends AppCompatActivity
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
 
-
         int id = item.getItemId();
 
         changePage(id);
 
         return true;
-    }
-
-    private void changePage(int id) {
-        Fragment fragment = null;
-
-        if (id == R.id.nav_home) {
-            // Handle the camera action
-            fragment = new HomeFragment();
-            setTitle("Home");
-        } else if (id == R.id.nav_about) {
-
-            fragment = new AboutusFragment();
-            setTitle("About Us");
-
-        }
-
-
-        getSupportFragmentManager().beginTransaction().replace(R.id.container, fragment).commitNow();
-
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        drawer.closeDrawer(GravityCompat.START);
-
     }
 }
